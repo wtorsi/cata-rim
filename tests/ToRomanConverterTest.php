@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
-require_once(getcwd().'/src/ToRomanConverter.php');
+require_once __DIR__ . '../src/ToRomanConverter.php';
 
 use PHPUnit\Framework\TestCase;
 
-final class ToRomanConvertTest extends TestCase
+final class ToRomanConverterTest extends TestCase
 {
     /**
      * @dataProvider getNumbers()
