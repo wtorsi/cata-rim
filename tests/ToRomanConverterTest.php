@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/../src/ToRomanConverter.php';
+require_once __DIR__.'/../src/ToRomanConverter.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -9,9 +9,29 @@ final class ToRomanConverterTest extends TestCase
     /**
      * @dataProvider getNumbers()
      */
-    public function testConvert(int $number, string $value): void
+    public function testToRoman(int $number, string $value): void
     {
-        self::assertEquals($value, ToRomanConverter::convert($number), \sprintf('Number %d', $number));
+        self::assertEquals($value, ToRomanConverter::toRoman($number), \sprintf('Number %d', $number));
+    }
+
+    public function testToRomanException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        ToRomanConverter::toRoman(-\mt_rand(0, 100));
+    }
+
+    /**
+     * @dataProvider getNumbers()
+     */
+    public function testToNumber(int $number, string $roman): void
+    {
+        self::assertEquals($number, ToRomanConverter::toDigit($roman), \sprintf('Number %d', $number));
+    }
+
+    public function testToNumberException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        ToRomanConverter::toDigit('O');
     }
 
     public function getNumbers(): array
