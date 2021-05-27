@@ -18,7 +18,7 @@ final class ToRomanConverter
         'I' => 1,
     ];
 
-    public static function newConvert(int $num): string
+    public static function toRoman(int $num): string
     {
         $string = '';
         foreach (self::VALUES as $roman => $number) {
@@ -28,6 +28,23 @@ final class ToRomanConverter
         }
 
         return $string;
+    }
+
+    public static function toDigit(string $rom): int
+    {
+        if (!!(\str_replace(\array_keys(self::VALUES), '', $rom))) {
+            throw new \InvalidArgumentException();
+        }
+
+        $result = 0;
+        foreach (self::VALUES as $roman => $number) {
+            while (\str_starts_with($rom, $roman)) {
+                $result += $number;
+                $rom = \substr($rom, \strlen($roman));
+            }
+        }
+
+        return $result;
     }
 
     public static function convert(int $a): string
