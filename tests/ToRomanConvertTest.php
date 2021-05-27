@@ -12,7 +12,7 @@ final class ToRomanConvertTest extends TestCase
         self::assertEquals($value, ToRomanConverter::convert($number));
     }
 
-    public function getNumbers()
+    public function getNumbers(): array
     {
         return [
             [1, 'I'],
