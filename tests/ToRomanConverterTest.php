@@ -11,7 +11,7 @@ final class ToRomanConverterTest extends TestCase
      */
     public function testConvert(int $number, string $value): void
     {
-        self::assertEquals($value, ToRomanConverter::convert($number));
+        self::assertEquals($value, ToRomanConverter::convert($number), \sprintf('Number %d', $number));
     }
 
     public function getNumbers(): array

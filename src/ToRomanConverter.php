@@ -2,6 +2,34 @@
 
 final class ToRomanConverter
 {
+    private const VALUES = [
+        'M' => 1000,
+        'CM' => 900,
+        'D' => 500,
+        'CD' => 400,
+        'C' => 100,
+        'XC' => 90,
+        'L' => 50,
+        'XL' => 40,
+        'X' => 10,
+        'IX' => 9,
+        'V' => 5,
+        'IV' => 4,
+        'I' => 1,
+    ];
+
+    public static function newConvert(int $num): string
+    {
+        $string = '';
+        foreach (self::VALUES as $roman => $number) {
+            $matches = \intval($num / $number);
+            $string .= \str_repeat($roman, $matches);
+            $num = $num % $number;
+        }
+
+        return $string;
+    }
+
     public static function convert(int $a): string
     {
         $result = '';
