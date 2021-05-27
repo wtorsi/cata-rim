@@ -20,6 +20,10 @@ final class ToRomanConverter
 
     public static function toRoman(int $num): string
     {
+        if ($num < 1) {
+            throw new \InvalidArgumentException(\sprintf('Value should be more or equal to 1'));
+        }
+
         $string = '';
         foreach (self::VALUES as $roman => $number) {
             $matches = \intval($num / $number);
@@ -33,7 +37,7 @@ final class ToRomanConverter
     public static function toDigit(string $rom): int
     {
         if (!!(\str_replace(\array_keys(self::VALUES), '', $rom))) {
-            throw new \InvalidArgumentException();
+            throw new \InvalidArgumentException(\sprintf('Invalid number passed'));
         }
 
         $result = 0;
